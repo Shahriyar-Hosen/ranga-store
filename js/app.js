@@ -1,9 +1,21 @@
-
-
 const loadProducts = () => {
-  fetch("https://fakestoreapi.com/products")
-    .then((res) => res.json())
-    .then((data) => showProducts(data));
+  const searchInput = document.getElementById("input-field");
+  const searchValue = searchInput.value;
+  console.log(searchValue);
+  if (searchValue) {
+    const url = `https://fakestoreapi.com/products/category/${searchValue}`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => showProducts(data));
+
+    searchInput.value = "";
+    document.getElementById("all-products").t;
+  } else {
+    const url = `https://fakestoreapi.com/products`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => showProducts(data));
+  }
 };
 
 // show all product in UI
